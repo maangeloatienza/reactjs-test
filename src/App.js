@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Navbar from './components/header/Navbar';
+import RouteLinks from './components/links/RouteLinks';
+import {getToken} from './utils/Commons';
+
+
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      isLoggedIn : false
+    }
+  }
+
+  componentDidMount(){
+    let isLoggedIn = getToken() ? true : getToken();
+    this.setState({
+      isLoggedIn : isLoggedIn
+    })
+  }
+
+  render(){
+ 
+    return (
+
+      <div className="container">
+          <Navbar isLoggedIn={this.state.isLoggedIn}/>
+          <RouteLinks/>
+      </div>
+    );
+  }
+  
 }
 
 export default App;
