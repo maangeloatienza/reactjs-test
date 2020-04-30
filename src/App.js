@@ -15,7 +15,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    let isLoggedIn = getToken() ? true : getToken();
+    let isLoggedIn = getToken() ? true : false;
     this.setState({
       isLoggedIn : isLoggedIn
     })

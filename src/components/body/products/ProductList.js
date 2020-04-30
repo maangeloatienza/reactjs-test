@@ -1,26 +1,20 @@
 import React, {Component} from 'react';
 import ProductCard from './ProductCard';
 
-class ProductList extends Component {
+function ProductList (props){
   
-  
-  render(){
-    const {products} = this.props;
-    console.log(products)
+  const { products } = props;
 
-    return (
-      <div className="container">
-          <div className="row">
+  return <div className="container-fluid">
+            <div className="row">
             {
               products.map((value, index)=>{
               return <ProductCard product={value} key={value.id}/>
               })
             }
+            </div>
           </div>
-      </div>
-    )
-  }
-  
 }
+  
 
 export default ProductList;

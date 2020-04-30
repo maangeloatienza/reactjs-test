@@ -16,7 +16,7 @@ class Products extends Component {
   }
 
   getProducts(){
-    getProducts().then((products) => this.setState({ products }));
+    getProducts().then((products) => this.setState({ products: products }));
   }
 
 

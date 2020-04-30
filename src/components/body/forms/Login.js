@@ -20,11 +20,18 @@ class Login extends Component {
         })
         .then(response=>{
             let data = response.data;
-         
-            setUserSession(data.token,data.user);
+            console.log('user',data);
 
+            if(data.success) {
+         
+                setUserSession(data.token, data.user);
+
+                this.props.history.push('/');
+                window.location.reload(false);
+
+            }
+            
             this.props.history.push('/');
-            window.location.reload(false);
         })
         .catch(error=>{
             console.log(error)

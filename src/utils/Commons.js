@@ -7,7 +7,8 @@ export const getUser = () => {
  
 // return the token from the session storage
 export const getToken = () => {
-  return localStorage.getItem('token') || null;
+  const tokenStr = localStorage.getItem('token') ? localStorage.getItem('token') : null
+  return tokenStr;
 }
  
 // remove the token and user from the session storage
