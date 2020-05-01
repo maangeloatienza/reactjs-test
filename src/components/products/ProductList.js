@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 import ProductCard from './ProductCard';
 
 function ProductList (props){
   
   const { products } = props;
 
-  return <div className="container-fluid">
+  return  <div className="container-fluid">
             <div className="row">
             {
               products.map((value, index)=>{

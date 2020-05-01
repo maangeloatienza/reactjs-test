@@ -7,3 +7,32 @@ export function getProducts(){
     return data;
   });
 }
+
+export function getUserCart(params) {
+  return API.get(`booking-items?user=${params}`)
+    .then(response => {
+      let data = response.data;
+      return data;
+    });
+}
+
+export function addCart(endpoint,body) {
+  return API.post(`booking-items`,body)
+    .then(response => {
+      let data = response.data;
+
+      if(data.success) return true;
+    });
+}
+
+export function checkout(body) {
+  return API.post(`transactions`,body)
+    .then(response=>{
+      let data = response.data;
+      
+      if (data.success) return true;
+    });
+
+}
+
+

@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { removeUserSession } from './../../../utils/Commons';
+import { removeUserSession } from './../../utils/Commons';
 
 
 class Logout extends React.Component {

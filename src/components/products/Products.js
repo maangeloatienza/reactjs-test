@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import ProductList from './ProductList';
-import API from './../../../utils/API';
-import {getProducts} from './../../../api/apiCall';
+import {getProducts} from './../../api/apiCall';
 
 class Products extends Component {
   constructor(props){
