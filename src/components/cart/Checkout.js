@@ -3,8 +3,19 @@ import React from 'react';
 function Checkout(props){
     let {cart,total,count} = props;
 
-    const checkout= ()=>{
-
+    const cartItems=()=>{
+        
+        // if(cart){
+        cart.map((item,index)=>{
+            return  <li className="list-group-item d-flex justify-content-between lh-condensed" key={item.id}>
+                        <div>
+                            <h6 className="my-0">{item.name}</h6>
+                            <small className="text-muted">x{item.quantity}</small>
+                        </div>
+                        <span className="text-muted">P{item.subtotal}</span>
+                    </li>
+            })
+        // }
     }
 
     return  <div>
@@ -14,26 +25,25 @@ function Checkout(props){
                 </h4>
                     <ul className="list-group mb-3">
                     {
-                        cart.map((item,index)=>{
-                        return  <li className="list-group-item d-flex justify-content-between lh-condensed" key={item.id}>
-                                    <div>
-                                        <h6 className="my-0">{item.name}</h6>
-                                        <small className="text-muted">x{item.quantity}</small>
-                                    </div>
-                                    <span className="text-muted">P{item.subtotal}</span>
-                                </li>
-                        })
+                        // cart ? cartItems() :  <li className="list-group-item d-flex justify-content-between lh-condensed">Empty Cart</li>
+                        cart ? cart.map((item,index)=>{
+                            return  <li className="list-group-item d-flex justify-content-between lh-condensed" key={item.id}>
+                                        <div>
+                                            <h6 className="my-0">{item.name}</h6>
+                                            <small className="text-muted">x{item.quantity}</small>
+                                        </div>
+                                        <span className="text-muted">P{item.subtotal}</span>
+                                    </li>
+                            })
+                            : 
+                            <li className="list-group-item d-flex justify-content-between lh-condensed">Empty Cart</li>
                     }
-                    
                    
                     <li className="list-group-item d-flex justify-content-between">
                         <span>Total </span>
-                        <strong>P{total}</strong>
+                        <strong>P{total||0.0}</strong>
                     </li>
                 </ul>
-                <form onSubmit={checkout}>
-                    <button className='btn btn-sm btn-primary text-ce'>Checkout</button>
-                </form>
             </div>
 }
 

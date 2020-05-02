@@ -25,7 +25,7 @@ export const setUserSession = (token, user) => {
 
 export const verifyUser = (user) => {
   
-  user ? localStorage.setItem('guest', user) : localStorage.getItem('guest');
+  // user ? localStorage.setItem('guest', user) : localStorage.getItem('guest');
 
   return localStorage.getItem('user') ? localStorage.getItem("user") : localStorage.getItem('guest');
 }

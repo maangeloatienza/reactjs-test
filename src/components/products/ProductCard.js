@@ -1,25 +1,25 @@
 import React from 'react';
 import { generate } from '../../utils/Generator';
 import { addCart } from './../../api/apiCall';
-import { getToken, verifyUser } from '../../utils/Commons';
+import { getToken, verifyUser,getUser } from '../../utils/Commons';
 
 
 function ProductCard(props) {
   let {product } = props;
-    
+  
+  const guest = !getToken() && localStorage.getItem('guest') ?  localStorage.getItem('guest') : localStorage.setItem('guest',generate());  
+  const user =  getToken() ? getUser() : [];  
+
   const addToCart=()=> {
-    localStorage.setItem('guest',generate());
     let body = {};
-    let user = verifyUser(generate());
     
-    
-    getToken()? body.user_id = user.id: body.guest_user = user;
+    getToken()? body.user_id = user.id: body.guest_user = guest;
 
     body.product_id = product.id;
     body.quantity = 1;
   
    
-    addCart(`user=${user}`,body);
+    addCart(`user=${getToken()? body.user_id = user.id: body.guest_user = guest}`,body);
     
   }
 

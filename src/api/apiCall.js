@@ -26,6 +26,7 @@ export function addCart(endpoint,body) {
 }
 
 export function checkout(body) {
+  console.log(body)
   return API.post(`transactions`,body)
     .then(response=>{
       let data = response.data;
