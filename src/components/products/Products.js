@@ -18,8 +18,6 @@ class Products extends Component {
     getProducts().then((products) => this.setState({ products: products }));
   }
 
-
-
   render(){
     return (
       <div className="container">

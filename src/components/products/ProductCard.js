@@ -1,29 +1,17 @@
-import React, {useState,useEffect} from 'react';
+import React from 'react';
 import { generate } from '../../utils/Generator';
 import { addCart, getUserCart } from './../../api/apiCall';
 import { getToken,getUser } from '../../utils/Commons';
+import { withGlobalState } from 'react-globally'
+
 import Toast from './../../utils/Toast';
 
 
 function ProductCard(props) {
   const {product } = props;
 
-  const [count, setCount] = useState(0);
-  
   const guest = !getToken() && localStorage.getItem('guest') ?  localStorage.getItem('guest') : localStorage.setItem('guest',generate());  
   const user =  getToken() ? getUser() : [];  
-
-  useEffect(()=>{
-    getCartbadge();
-  })
-
-  const getCartbadge = () => {
-    let params = getToken() ? `user=${getUser().id}` : `guest=${localStorage.getItem('guest')}`;
-
-    getUserCart(params).then((cart) => {
-      setCount(cart.count)
-    });
-  }
 
   const addToCart=()=> {
     let body = {};
@@ -35,7 +23,16 @@ function ProductCard(props) {
   
    
     addCart(`user=${getToken()? body.user_id = user.id: body.guest_user = guest}`,body).then(response=>{
-      Toast(response);
+      let params = getToken() ? `user=${body.user_id}` : `guest=${body.guest_user}`;
+
+      getUserCart(params).then((cart) => {
+        props.setGlobalState({
+          badge : cart.count
+        })
+      
+          Toast(response);
+
+      });
     });
     
   }
@@ -58,4 +55,4 @@ function ProductCard(props) {
     
 }
 
-export default ProductCard;
+export default withGlobalState(ProductCard);

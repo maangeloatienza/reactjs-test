@@ -4,13 +4,20 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter as Router} from 'react-router-dom';
+import { Provider } from 'react-globally'
 import * as serviceWorker from './serviceWorker';
 
+
+const globalState = {
+  badge: 0
+}
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <Provider globalState={globalState}>
+        <App />
+      </Provider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

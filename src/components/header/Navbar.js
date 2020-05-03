@@ -1,20 +1,10 @@
-import React,{Component} from 'react';
+import React from 'react';
 import { Link  } from 'react-router-dom';
+import { withGlobalState } from 'react-globally'
 
-class Navbar extends Component {
-
-    constructor(props){
-        super(props);
-
-        this.state = {
-            count: 0
-        }
-    }
-
-    render (){
-
-        return (
-            <nav className="navbar navbar-expand-md navbar-inverse justify-content-right">
+function Navbar (props) {
+    const {isLoggedIn} = props;
+        return <nav className="navbar navbar-expand-md navbar-inverse justify-content-right">
 
                 <div className="container-fluid">
                     <ul className="navbar-nav mr-auto">
@@ -27,7 +17,7 @@ class Navbar extends Component {
                         </li>
                         <li>
                             {
-                                this.props.isLoggedIn ? 
+                                isLoggedIn ? 
                                 <Link 
                                     to={'/logout'}
                                     className="nav-link text-dark">
@@ -45,15 +35,13 @@ class Navbar extends Component {
                             <Link
                                 to={'/cart'}
                                 className="nav-link text-dark">
-                                Cart <span className="badge badge-secondary badge-pill">{this.props.badge || 0}</span>
+                                Cart <span className="badge badge-secondary badge-pill">{props.globalState.badge || 0}</span>
                             </Link>
                             
                         </li>
                     </ul>
                 </div>
             </nav>
-          )
-    }
 }
 
-export default Navbar;
+export default withGlobalState(Navbar);

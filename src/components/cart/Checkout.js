@@ -24,11 +24,11 @@ function Checkout(props){
                             <li className="list-group-item d-flex justify-content-between lh-condensed">Empty Cart</li>
                     }
                    
-                    <li className="list-group-item d-flex justify-content-between">
-                        <span>Total </span>
-                        <strong>P{total||0.0}</strong>
-                    </li>
-                </ul>
+                        <li className="list-group-item d-flex justify-content-between">
+                            <span>Total </span>
+                            <strong>P{total||0.0}</strong>
+                        </li>
+                    </ul>
             </div>
 }
 

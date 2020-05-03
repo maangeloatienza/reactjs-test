@@ -15,9 +15,9 @@ class RouteLinks extends Component {
       <div>
         <Switch>
           <Route exact path='/' component ={Products}/>
-          <Route path='/login' component ={Login}/>
+          <Route exact path='/login' component ={Login}/>
           <Route path='/logout' component={Logout} />
-          <Route exact path='/cart' component={Cart}/>
+          <Route path='/cart' component={Cart}/>
           <Route path='/cart/checkout-success' component={CheckoutSuccess}/>
         </Switch>
       </div>
