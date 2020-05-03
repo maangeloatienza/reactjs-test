@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
-import { getToken, verifyUser, getUser } from '../../utils/Commons';
+import { getToken, getUser } from '../../utils/Commons';
 import { getUserCart } from './../../api/apiCall';
 import CheckoutForm from './../forms/CheckoutForm';
-import CartItem from './CartItem';
+
 import Checkout from './Checkout';
 
 class Cart extends Component{
@@ -26,11 +26,9 @@ class Cart extends Component{
     getCartItems(){
         
         let params = getToken() ? `user=${getUser().id}` : `guest=${localStorage.getItem('guest')}`;
-        console.log('isGuest',localStorage.getItem('guest'));
-        console.log('isLoggedIn',getToken());
 
         getUserCart(params).then((cart) => {
-            console.log(cart)
+
             this.setState({ cart: cart.data, total : cart.total, count : cart.count }
         )});
     }

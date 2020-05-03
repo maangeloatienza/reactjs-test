@@ -1,14 +1,29 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import { generate } from '../../utils/Generator';
-import { addCart } from './../../api/apiCall';
-import { getToken, verifyUser,getUser } from '../../utils/Commons';
+import { addCart, getUserCart } from './../../api/apiCall';
+import { getToken,getUser } from '../../utils/Commons';
+import Toast from './../../utils/Toast';
 
 
 function ProductCard(props) {
-  let {product } = props;
+  const {product } = props;
+
+  const [count, setCount] = useState(0);
   
   const guest = !getToken() && localStorage.getItem('guest') ?  localStorage.getItem('guest') : localStorage.setItem('guest',generate());  
   const user =  getToken() ? getUser() : [];  
+
+  useEffect(()=>{
+    getCartbadge();
+  })
+
+  const getCartbadge = () => {
+    let params = getToken() ? `user=${getUser().id}` : `guest=${localStorage.getItem('guest')}`;
+
+    getUserCart(params).then((cart) => {
+      setCount(cart.count)
+    });
+  }
 
   const addToCart=()=> {
     let body = {};
@@ -19,7 +34,9 @@ function ProductCard(props) {
     body.quantity = 1;
   
    
-    addCart(`user=${getToken()? body.user_id = user.id: body.guest_user = guest}`,body);
+    addCart(`user=${getToken()? body.user_id = user.id: body.guest_user = guest}`,body).then(response=>{
+      Toast(response);
+    });
     
   }
 

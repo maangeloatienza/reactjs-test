@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import { withRouter } from 'react-router-dom';
 import { getToken, getUser } from '../../utils/Commons';
 import {checkout} from './../../api/apiCall';
-
+import Toast from './../../utils/Toast';
 
 class CheckoutForm extends Component{
     
@@ -30,10 +30,12 @@ class CheckoutForm extends Component{
         body.user_id = getToken() ? verifiedUser.id : localStorage.getItem('guest');
         body.delivery_cost = 50.0;
         
-    
         checkout(body).then(response=>{
-            console.log(response);
-            if(response.success) return this.props.history.push('/cart/checkout-success');
+            
+            if(response.success) {
+                Toast(response);
+                this.props.history.push('/cart/checkout-success')
+            };
 
         })
         

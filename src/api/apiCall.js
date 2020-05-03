@@ -21,7 +21,7 @@ export function addCart(endpoint,body) {
     .then(response => {
       let data = response.data;
 
-      if(data.success) return true;
+      return data;
     });
 }
 
@@ -30,7 +30,7 @@ export function checkout(body) {
     .then(response=>{
       let data = response.data;
       
-      if (data.success) return data;
+      return data;
     });
 
 }
@@ -39,6 +39,7 @@ export function getTransactions(params) {
   return API.get(`transactions?${params}`)
     .then(response => {
       let data = response.data;
+      
       return data;
     })
 }

@@ -3,6 +3,14 @@ import { Link  } from 'react-router-dom';
 
 class Navbar extends Component {
 
+    constructor(props){
+        super(props);
+
+        this.state = {
+            count: 0
+        }
+    }
+
     render (){
 
         return (
@@ -37,8 +45,9 @@ class Navbar extends Component {
                             <Link
                                 to={'/cart'}
                                 className="nav-link text-dark">
-                                Cart
+                                Cart <span className="badge badge-secondary badge-pill">{this.props.badge || 0}</span>
                             </Link>
+                            
                         </li>
                     </ul>
                 </div>

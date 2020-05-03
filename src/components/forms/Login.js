@@ -46,13 +46,11 @@ class Login extends Component {
                 <div className="row justify-content-md-center">
                     <div className="col col-xs-12 col-sm-12 col-md-6 col-lg-6  mt-5 pt-5">
                         <form onSubmit={this.onSubmit}>
-                            {/* <input type='text' ref={usernameInput => this.usernameInput = usernameInput} placeholder='Username'/>
-                        <input type='password' ref={passwordInput => this.passwordInput = passwordInput} placeholder='Password'/>
-                        <button>Login</button> */}
+                            <h1 className='text-center'>Order Template Login</h1>
 
                             <div className="form-label-group mb-2">
                                 
-                                <input type="text" className='form-control' ref={usernameInput => this.usernameInput = usernameInput} placeholder='Username' required autofocus />
+                                <input type="text" className='form-control' ref={usernameInput => this.usernameInput = usernameInput} placeholder='Username' required />
                                 
                             </div>
 
