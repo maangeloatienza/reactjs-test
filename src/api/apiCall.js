@@ -9,7 +9,7 @@ export function getProducts(){
 }
 
 export function getUserCart(params) {
-  return API.get(`booking-items?user=${params}`)
+  return API.get(`booking-items?${params}`)
     .then(response => {
       let data = response.data;
       return data;
@@ -26,14 +26,19 @@ export function addCart(endpoint,body) {
 }
 
 export function checkout(body) {
-  console.log(body)
-  return API.post(`transactions`,body)
+  return API.post(`transactions?`,body)
     .then(response=>{
       let data = response.data;
       
-      if (data.success) return true;
+      if (data.success) return data;
     });
 
 }
 
-
+export function getTransactions(params) {
+  return API.get(`transactions?${params}`)
+    .then(response => {
+      let data = response.data;
+      return data;
+    })
+}

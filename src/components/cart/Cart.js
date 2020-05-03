@@ -25,11 +25,14 @@ class Cart extends Component{
 
     getCartItems(){
         
-        let params = getToken() ? getUser().id : localStorage.getItem('guest');
+        let params = getToken() ? `user=${getUser().id}` : `guest=${localStorage.getItem('guest')}`;
         console.log('isGuest',localStorage.getItem('guest'));
         console.log('isLoggedIn',getToken());
 
-        getUserCart(params).then((cart) => this.setState({ cart: cart.data, total : cart.total, count : cart.count }));
+        getUserCart(params).then((cart) => {
+            console.log(cart)
+            this.setState({ cart: cart.data, total : cart.total, count : cart.count }
+        )});
     }
     render(){
         return (
@@ -41,7 +44,7 @@ class Cart extends Component{
                     <div  className='col-sm-12 col-md-8 col-lg-8 '>
                         {/* <CartItem cart={this.state.cart} total={this.state.total}/> */}
                         {
-                            getToken() ? <CartItem cart={this.state.cart} total={this.state.total} /> : <CheckoutForm cart={this.state.cart} />
+                            <CheckoutForm cart={this.state.cart} />
                         }
                         
                     </div>

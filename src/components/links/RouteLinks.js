@@ -5,6 +5,7 @@ import Products from './../products/Products';
 import Login from './../forms/Login';
 import Logout from './../forms/Logout';
 import Cart from './../cart/Cart';
+import CheckoutSuccess from './../cart/CheckoutSuccess';
 
 
 class RouteLinks extends Component {
@@ -16,7 +17,8 @@ class RouteLinks extends Component {
           <Route exact path='/' component ={Products}/>
           <Route path='/login' component ={Login}/>
           <Route path='/logout' component={Logout} />
-          <Route path='/cart' component={Cart}/>
+          <Route exact path='/cart' component={Cart}/>
+          <Route path='/cart/checkout-success' component={CheckoutSuccess}/>
         </Switch>
       </div>
     )

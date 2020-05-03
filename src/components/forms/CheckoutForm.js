@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
-import { checkout } from './../../api/apiCall';
+import { withRouter } from 'react-router-dom';
 import { getToken, getUser } from '../../utils/Commons';
-import API from './../../utils/API';
+import {checkout} from './../../api/apiCall';
 
 
 class CheckoutForm extends Component{
@@ -17,30 +17,24 @@ class CheckoutForm extends Component{
         
     }
 
-    onCheckout(){
-        console.log('CLICKED!')
+    onCheckout(event){
+        event.preventDefault();
+        
         let body = {};
         let verifiedUser = getToken() ? getUser(): [];
         
         
-        let first_name = this.firstNameInput.value;
-        let last_name = this.lastNameInput.value;
-        let delivery_address = this.deliveryAddressInput.value;
-        let user_id = getToken() ? verifiedUser.id : localStorage.getItem('guest');
+        body.first_name = this.firstNameInput.value;
+        body.last_name = this.lastNameInput.value;
+        body.delivery_address = this.deliveryAddressInput.value;
+        body.user_id = getToken() ? verifiedUser.id : localStorage.getItem('guest');
+        body.delivery_cost = 50.0;
+        
     
-    
-        API.post('transactions',{
-            user_id : user_id,
-            first_name : first_name,
-            last_name : last_name,
-            delivery_address : delivery_address
-        })
-        .then(response=>{
-            let data = response.data;
+        checkout(body).then(response=>{
+            console.log(response);
+            if(response.success) return this.props.history.push('/cart/checkout-success');
 
-            if(data.success){
-                this.props.history.push('/');
-            }
         })
         
     }
@@ -65,7 +59,7 @@ class CheckoutForm extends Component{
 
                     <div className="form-row mb-4">
                         <div className="col">
-                            <input type="text" className='form-control' ref={deliveryAddress => this.deliveryAddress = deliveryAddress} placeholder='Delivery address' required autoFocus />
+                            <input type="text" className='form-control' ref={deliveryAddressInput => this.deliveryAddressInput = deliveryAddressInput} placeholder='Delivery address' required autoFocus />
                         </div>
                     </div>
 
@@ -79,4 +73,4 @@ class CheckoutForm extends Component{
 
 }
 
-export default CheckoutForm;
+export default withRouter(CheckoutForm);
