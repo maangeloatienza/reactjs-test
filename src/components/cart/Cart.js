@@ -13,6 +13,7 @@ class Cart extends Component{
             cart: [],
             count : 0,
             total : 0.0,
+            charge : 50,
             user : null
         }
 
@@ -28,7 +29,7 @@ class Cart extends Component{
         let params = getToken() ? `user=${getUser().id}` : `guest=${localStorage.getItem('guest')}`;
 
         getUserCart(params).then((cart) => {
-            this.setState({ cart: cart.data, total : cart.total, count : cart.count }
+            this.setState({ cart: cart.data, total : cart.total, count : cart.count, charge : 50 }
         )});
     }
     render(){
@@ -36,7 +37,7 @@ class Cart extends Component{
             <div className="container">
                 <div className="row">
                     <div className="col-sm-12 col-md-4 col-lg-4">
-                        <Checkout cart={this.state.cart} total={this.state.total} count={this.state.count} />
+                        <Checkout cart={this.state.cart} total={this.state.total} count={this.state.count} charge={this.state.charge}/>
                     </div>
                     <div  className='col-sm-12 col-md-8 col-lg-8 '>
                         {/* <CartItem cart={this.state.cart} total={this.state.total}/> */}

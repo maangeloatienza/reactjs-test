@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Checkout(props){
-    let {cart,total,count} = props;
+    let {cart,total,count,charge} = props;
 
     return  <div>
                 <h4 className="d-flex justify-content-between align-items-center mb-3">
@@ -10,23 +10,28 @@ function Checkout(props){
                 </h4>
                     <ul className="list-group mb-3">
                     {
-                        // cart ? cartItems() :  <li className="list-group-item d-flex justify-content-between lh-condensed">Empty Cart</li>
                         cart ? cart.map((item,index)=>{
                             return  <li className="list-group-item d-flex justify-content-between lh-condensed" key={item.id}>
                                         <div>
                                             <h6 className="my-0">{item.name}</h6>
                                             <small className="text-muted">x{item.quantity}</small>
                                         </div>
-                                        <span className="text-muted">P{item.subtotal}</span>
+                                        <strong className="text-muted">P{item.subtotal}</strong>
                                     </li>
+                                    
                             })
                             : 
                             <li className="list-group-item d-flex justify-content-between lh-condensed">Empty Cart</li>
                     }
-                   
+                    {
+                        cart ?  <li className="list-group-item d-flex justify-content-between">
+                                    <span>Delivery charge </span>
+                                <strong className="text-muted">P{charge}</strong>
+                                </li> : ''
+                    }
                         <li className="list-group-item d-flex justify-content-between">
                             <span>Total </span>
-                            <strong>P{total||0.0}</strong>
+                            <strong>P{total+charge||0.0}</strong>
                         </li>
                     </ul>
             </div>

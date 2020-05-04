@@ -23,16 +23,14 @@ class CheckoutForm extends Component{
         body.first_name = this.firstNameInput.value;
         body.last_name = this.lastNameInput.value;
         body.delivery_address = this.deliveryAddressInput.value;
+        body.contact_number = this.contactNumberInput.value;
         body.user_id = getToken() ? verifiedUser.id : localStorage.getItem('guest');
         body.delivery_cost = 50.0;
         
         checkout(body).then(response=>{
             if(response.success) {
                 Toast(response);
-
-                // this.props.history.push('/cart/checkout-success');
                 window.location.href = '/cart/checkout-success';
-
             };
 
         })
@@ -48,7 +46,7 @@ class CheckoutForm extends Component{
                 </h4>
                 <form onSubmit={this.onCheckout}>
                     
-                    <div className="form-row mb-4">
+                    <div className="form-row mb-2">
                         <div className="col">            
                             <input type="text" className='form-control' ref={firstNameInput => this.firstNameInput = firstNameInput} placeholder='First name' required autoFocus />
                         </div>
@@ -57,14 +55,19 @@ class CheckoutForm extends Component{
                         </div>
                     </div>
 
-                    <div className="form-row mb-4">
+                    <div className="form-row mb-2">
+                        <div className="col">
+                            <input type="text" className='form-control' ref={contactNumberInput => this.contactNumberInput = contactNumberInput} placeholder='Contact number' required autoFocus />
+                        </div>
+                    </div>
+
+                    <div className="form-row mb-3">
                         <div className="col">
                             <input type="text" className='form-control' ref={deliveryAddressInput => this.deliveryAddressInput = deliveryAddressInput} placeholder='Delivery address' required autoFocus />
                         </div>
                     </div>
 
-
-                    <button className="mt-2 btn btn-sm btn-primary btn-block" >Checkout</button>
+                    <button className="mt-2 btn btn-md btn-primary btn-block" >Checkout</button>
 
                 </form>
             </div >

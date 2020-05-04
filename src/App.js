@@ -17,55 +17,6 @@ toast.configure({
 });
 
 
-
-// class App extends Component {
-//   constructor(props){
-//     super(props);
-//     this.state = {
-//       isLoggedIn : false,
-//       badge : 0,
-//       message : ''
-//     }
-//   }
-
-//   componentDidMount(){
-//     let isLoggedIn = getToken() ? true : false;
-//     this.setState({
-//       isLoggedIn : isLoggedIn
-//     })
-//     this.getCartbadge();
-//   }
-
-
-//   getCartbadge() {
-//     let params = getToken() ? `user=${getUser().id}` : `guest=${localStorage.getItem('guest')}`;
-
-//     getUserCart(params).then((cart) => {
-
-//       this.setState({ badge: cart.count }
-//       )
-//     });
-//   }
-
-
-//   render(){
- 
-//     return (
-
-//       <div className="container">
-//           <Navbar isLoggedIn={this.state.isLoggedIn} badge={this.state.badge}/>
-//           <RouteLinks/>
-//           <ToastContainer 
-          
-//         />
-//       </div>
-//     );
-//   }
-  
-// }
-
-
-
 function App(props) {
   
   const [isLoggedIn,setLoggedIn] = useState(false);
@@ -80,10 +31,14 @@ function App(props) {
     setLoggedIn(isLoggedIn);
   }
 
-  return  <div className="container">
+  return  <div >
             <Navbar isLoggedIn={isLoggedIn}/>
-            <RouteLinks />
-            <ToastContainer/>
+            <div className="container">
+
+              <RouteLinks />
+              <ToastContainer/>
+            
+            </div>
           </div>
 }
 

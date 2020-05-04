@@ -60,6 +60,13 @@ class CheckoutSuccess extends Component{
 
                                     <li className="list-group-item d-flex justify-content-between lh-condensed">
                                         <div className='text-left'>
+                                            <h6 className="my-0 font-weight-bolder">Contact details </h6>
+                                        </div>
+                                        <span className="text-muted text-right">{this.state.transactions.contact_number}</span>
+                                    </li>
+
+                                    <li className="list-group-item d-flex justify-content-between lh-condensed">
+                                        <div className='text-left'>
                                             <h6 className="my-0 font-weight-bolder">Delivery address </h6>
                                         </div>
                                         <span className="text-muted text-right">{this.state.transactions.delivery_address}</span>
