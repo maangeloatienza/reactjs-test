@@ -24,13 +24,13 @@ function ProductCard(props) {
    
     addCart(`user=${getToken()? body.user_id = user.id: body.guest_user = guest}`,body).then(response=>{
       let params = getToken() ? `user=${body.user_id}` : `guest=${body.guest_user}`;
+     
 
       getUserCart(params).then((cart) => {
         props.setGlobalState({
           badge : cart.count
         })
-      
-          Toast(response);
+        Toast(response);
 
       });
     });

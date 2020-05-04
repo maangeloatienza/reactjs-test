@@ -1,7 +1,6 @@
 import React,{Component} from 'react';
 import { getToken, getUser } from '../../utils/Commons';
 import { getUserCart } from './../../api/apiCall';
-import { withGlobalState } from 'react-globally'
 
 import CheckoutForm from './../forms/CheckoutForm';
 import Checkout from './Checkout';
@@ -37,7 +36,7 @@ class Cart extends Component{
             <div className="container">
                 <div className="row">
                     <div className="col-sm-12 col-md-4 col-lg-4">
-                        <Checkout cart={this.state.cart} total={this.state.total} count={this.props.globalState.badge} />
+                        <Checkout cart={this.state.cart} total={this.state.total} count={this.state.count} />
                     </div>
                     <div  className='col-sm-12 col-md-8 col-lg-8 '>
                         {/* <CartItem cart={this.state.cart} total={this.state.total}/> */}
@@ -53,4 +52,4 @@ class Cart extends Component{
     }
 }
 
-export default withGlobalState(Cart);
+export default Cart;

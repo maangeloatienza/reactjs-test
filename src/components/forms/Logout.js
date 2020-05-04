@@ -1,6 +1,10 @@
 import React from 'react';
+import Toast from './../../utils/Toast';
+
+import {logout} from './../../api/apiCall';
 import { withRouter } from 'react-router-dom';
-import { removeUserSession } from './../../utils/Commons';
+import { removeUserSession, getToken } from './../../utils/Commons';
+
 
 
 class Logout extends React.Component {
@@ -10,21 +14,37 @@ class Logout extends React.Component {
 
     this.onLogout = this.onLogout.bind(this);
   }
+  
+  componentDidMount(){
+    this.onLogout()
+  }
 
   onLogout(){
-    removeUserSession();
     
-    this.props.history.push('/');
+    
+    logout().then(response=> {
+      Toast(response);
 
-    window.location.reload(false);
+      if(response.success){
+        removeUserSession();
+        setTimeout(() => {
+          window.location.href = '/';
+
+        }, 1000);
+      } 
+    })
+
+    // this.props.history.push('/');
+
+    // window.location.reload(false);
 
   }
 
   render(){
         
     return (
-      
-        <button  onClick={this.onLogout}>Logout</button>
+        <div></div>
+        // <button  onClick={this.onLogout}>Logout</button>
       
       )
   }

@@ -20,24 +20,19 @@ class CheckoutForm extends Component{
         let verifiedUser = getToken() ? getUser(): [];
         
         
-        // body.first_name = this.firstNameInput.value;
-        // body.last_name = this.lastNameInput.value;
-        // body.delivery_address = this.deliveryAddressInput.value;
-        // body.user_id = getToken() ? verifiedUser.id : localStorage.getItem('guest');
-        // body.delivery_cost = 50.0;
+        body.first_name = this.firstNameInput.value;
+        body.last_name = this.lastNameInput.value;
+        body.delivery_address = this.deliveryAddressInput.value;
+        body.user_id = getToken() ? verifiedUser.id : localStorage.getItem('guest');
+        body.delivery_cost = 50.0;
         
-        checkout({
-            user_id: getToken() ? verifiedUser.id : localStorage.getItem('guest'),
-            first_name: this.firstNameInput.value,
-            last_name: this.lastNameInput.value,
-            delivery_address : this.deliveryAddressInput.value,
-            delivery_cost : 50.0
-        }).then(response=>{
-            
+        checkout(body).then(response=>{
             if(response.success) {
                 Toast(response);
 
-                this.props.history.push('/cart/checkout-success');
+                // this.props.history.push('/cart/checkout-success');
+                window.location.href = '/cart/checkout-success';
+
             };
 
         })

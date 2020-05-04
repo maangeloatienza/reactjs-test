@@ -1,5 +1,15 @@
 import API from './../utils/API';
 
+
+export function logout(){
+  return API.post('/user/logout',{})
+    .then(response =>{
+        let data = response.data;
+
+        return data;
+    })
+}
+
 export function getProducts(){
   return  API.get('products')
   .then(response=>{
