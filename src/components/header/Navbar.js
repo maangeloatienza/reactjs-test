@@ -27,6 +27,7 @@ function Navbar (props) {
                                     Home
                                     </Link>
                             </li>
+
                             {
                                 isLoggedIn ?
                                     <Link
@@ -36,29 +37,38 @@ function Navbar (props) {
                                     </Link>
                                     : ''
                             }
+                            
+                            <li className="nav-item text-center mx-auto">
+                                <Link
+                                    to={'/cart'}
+                                    className="nav-link text-dark font-weight-bolder">
+                                        <span className='badge badge-dark badge-pill p-2'>
+                                            <i className="fa fa-shopping-cart mx-1 " aria-hidden="true"></i> 
+                                                <span className={props.globalState.badge ? 'text-white' : 'text-danger'}>{props.globalState.badge || 0}</span>
+                                        </span>
+                                        {/* <h2 className="badge badge-secondary badge-pill">
+                                            
+                                            <h4 className={}>{props.globalState.badge}</h4>
+                                        </h2> */}
+                                </Link>
+
+                            </li>
+
                             <li className="nav-item">
                                 {
                                     isLoggedIn ?
                                         <Link
                                             to={'/logout'}
-                                        className="nav-link text-dark font-weight-bolder" >
+                                            className="nav-link text-dark font-weight-bolder" >
                                             Logout
-                                        </Link>
+                                                </Link>
                                         :
                                         <Link
                                             to={'/login'}
-                                        className="nav-link text-dark font-weight-bolder">
+                                            className="nav-link text-dark font-weight-bolder">
                                             Login
-                                        </Link>
+                                                </Link>
                                 }
-                            </li>
-                            <li className="nav-item">
-                                <Link
-                                    to={'/cart'}
-                                    className="nav-link text-dark font-weight-bolder">
-                                        <span className="badge badge-secondary badge-pill"><i className="fa fa-shopping-cart" aria-hidden="true"></i> <span className={props.globalState.badge? 'text-white' : 'text-danger'}>{props.globalState.badge || 0}</span> </span>
-                                </Link>
-
                             </li>
                         </ul>
                     </div>

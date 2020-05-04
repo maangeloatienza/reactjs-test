@@ -8,6 +8,8 @@ import TransactionList from './TransactionList';
 function Transactions(props){
 
     const [transactions, setTransactions] = useState([]);
+    const [sort_desc, setSordDesc] = useState('DESC');
+    const [sort_id, setSordId] = useState('created');
     const [count,setCount] = useState(0);
 
     useEffect(()=>{
@@ -16,9 +18,8 @@ function Transactions(props){
 
     const fetchTransactions = () =>{
         let params = getToken() ? `user=${getUser().id}` : `user=${localStorage.getItem('guest')}`;
-
-        getTransactions(params).then(response =>{
-            
+        
+        getTransactions(`${params}&sort_id=${sort_id}&sort_desc=${sort_desc}`).then(response =>{ 
             setTransactions(response.data);
             setCount(response.count);
         });

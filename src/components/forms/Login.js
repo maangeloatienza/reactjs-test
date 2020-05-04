@@ -3,6 +3,8 @@ import API from '../../utils/API';
 import { withRouter } from 'react-router-dom';
 import { setUserSession } from '../../utils/Commons';
 
+import Toast from './../../utils/Toast';
+
 class Login extends Component {
 
     constructor(props){
@@ -22,16 +24,17 @@ class Login extends Component {
             let data = response.data;
             console.log('user',data.data);
 
+            Toast(data);
             if(data.success) {
          
                 setUserSession(data.token, data.data);
 
-                this.props.history.push('/');
-                window.location.reload(false);
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 1000);
 
             }
             
-            this.props.history.push('/');
         })
         .catch(error=>{
             console.log(error)

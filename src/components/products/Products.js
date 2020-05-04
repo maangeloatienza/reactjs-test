@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import ProductList from './ProductList';
-import {getProducts} from './../../api/apiCall';
 
+
+import { getToken,getUser } from '../../utils/Commons';
+import { getProducts, getUserCart} from './../../api/apiCall';
+import { withGlobalState } from 'react-globally'
 class Products extends Component {
   constructor(props){
     super(props);
@@ -15,7 +18,19 @@ class Products extends Component {
   }
 
   getProducts(){
-    getProducts().then((products) => this.setState({ products: products }));
+    getProducts().then((products) => {
+      let params = getToken() ? `user=${getUser().id}` : `guest=${localStorage.getItem('guest')}`;
+      getUserCart(params).then((cart) => {
+        this.props.setGlobalState({
+          badge: cart.count
+        })
+
+        
+
+      });
+      this.setState({ products: products })
+    
+    });
   }
 
   render(){
@@ -30,4 +45,4 @@ class Products extends Component {
   
 }
 
-export default Products;
+export default withGlobalState(Products);
