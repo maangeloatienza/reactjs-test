@@ -9,9 +9,10 @@ function ProductList (props){
             <div className="row">
               <div className='card-deck'>
                   {
-                    products.map((value, index) => {
+                    products ? products.map((value, index) => {
                       return <ProductCard product={value} key={value.id} />
                     })
+                    : <h1 className='text-center text-danger font-weight-bolder'>No products available!</h1>
                   }
               </div>
             </div>
