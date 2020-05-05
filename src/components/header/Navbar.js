@@ -23,8 +23,8 @@ function Navbar (props) {
                             <li  className="nav-item active">
                                 <Link
                                     to={'/'}
-                                    className="nav-link text-dark font-weight-bolder">
-                                    Home
+                                    className="nav-link text-dark righteous-cursive text-uppercase">
+                                        <h5 className='font-weight-bolder'>Home</h5>
                                     </Link>
                             </li>
 
@@ -32,43 +32,51 @@ function Navbar (props) {
                                 isLoggedIn ?
                                     <Link
                                         to={'/transactions'}
-                                        className="nav-link text-dark font-weight-bolder">
-                                        Orders
+                                        className="nav-link text-dark righteous-cursive text-uppercase">
+                                        <h5 className='font-weight-bolder'>Orders</h5>
                                     </Link>
                                     : ''
                             }
-                            
-                            <li className="nav-item text-center mx-auto">
-                                <Link
-                                    to={'/cart'}
-                                    className="nav-link text-dark font-weight-bolder">
-                                        <span className='badge badge-dark badge-pill p-2'>
-                                            <i className="fa fa-shopping-cart mx-1 " aria-hidden="true"></i> 
-                                                <span className={props.globalState.badge ? 'text-white' : 'text-danger'}>{props.globalState.badge || 0}</span>
-                                        </span>
-                                        {/* <h2 className="badge badge-secondary badge-pill">
-                                            
-                                            <h4 className={}>{props.globalState.badge}</h4>
-                                        </h2> */}
-                                </Link>
 
-                            </li>
+                            {
+                                !isLoggedIn ?
+                                    <Link
+                                        to={'/register'}
+                                        className="nav-link text-dark righteous-cursive text-uppercase">
+                                        <h5 className='font-weight-bolder'>Register</h5>
+                                    </Link>
+                                    : ''
+                            }
+                                    
 
                             <li className="nav-item">
                                 {
                                     isLoggedIn ?
                                         <Link
                                             to={'/logout'}
-                                            className="nav-link text-dark font-weight-bolder" >
-                                            Logout
-                                                </Link>
+                                            className="nav-link text-dark righteous-cursive text-uppercase" >
+                                                <h5 className='font-weight-bolder'>Logout</h5>
+                                        </Link>
                                         :
                                         <Link
                                             to={'/login'}
-                                            className="nav-link text-dark font-weight-bolder">
-                                            Login
-                                                </Link>
+                                            className="nav-link text-dark righteous-cursive text-uppercase">
+                                                <h5 className='font-weight-bolder'>Login</h5>
+                                        </Link>
                                 }
+                            </li>
+                            
+                            <li className="nav-item text-center mx-auto">
+                                <Link
+                                    to={'/cart'}
+                                    className="nav-link text-dark righteous-cursive text-uppercase">
+                                        <h5 className='font-weight-bolder'>
+                                            <i className="fa fa-shopping-cart mx-1 " aria-hidden="true"></i> 
+                                                <span className={`badge badge-danger badge-pill p-2 ${props.globalState.badge ? 'text-white' : 'text-warning'} `}>{props.globalState.badge || 0}</span>
+                                        </h5>
+                                       
+                                </Link>
+
                             </li>
                         </ul>
                     </div>

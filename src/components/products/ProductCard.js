@@ -52,19 +52,22 @@ function ProductCard(props) {
     setQuantity(event.target.value)
   }
 
-  return <div className='col-xs-6 cold-sm-6 col-md-4 col-lg-3 mx-auto px-1 my-2 card ' key={product.id}>
+  return <div className='card text-center' key={product.id}>
+          <div className='card-header font-weight-bolder fredoka-cursive'>{product.name}</div>
           <img className='card-img-top img-fluid' style={{height:'180px'}} src={product.image} alt={product.name}/>
           <div className='card-body'>
-            <h5 className='card-title'>{product.name} </h5>
-            <p className='text-right'>P{product.price}</p>  
+              <p className='text-right font-weight-bolder'>&#8369; {product.price}</p>
             {
               product.availability ?
               <div className='text-center'>
-                <div>
-                  <input type='number' className='form-control mb-2' value={quantity} onChange={onChangeQuantity}/>
+                <div className='form-row'>
+                  <div class='col'>
+                    <input type='number' className='form-control mb-2' value={quantity} onChange={onChangeQuantity} />
+                  </div>
+                  <div class='col'>
+                    <button className='btn btn-success text-white form-control' onClick={addToCart}>Order</button>
+                  </div>
                 </div>
-                
-                  <button className='btn btn-success text-white' onClick={addToCart}>Add to Cart</button>
               </div>
               :
               <p className='text-danger text-center'>Not available</p>

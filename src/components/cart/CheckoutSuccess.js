@@ -76,7 +76,7 @@ class CheckoutSuccess extends Component{
                                         <div className='text-left'>
                                             <h6 className="my-0 font-weight-bolder">TOTAL</h6>
                                         </div>
-                                        <span className="text-muted text-right">P{this.state.transactions.total}</span>
+                                        <span className="text-muted text-right">&#8369; {this.state.transactions.total}</span>
                                     </li>
                                 </ul>
                                 <button className='btn btn-md btn-success' onClick={this.goBack}>Continue shopping</button>

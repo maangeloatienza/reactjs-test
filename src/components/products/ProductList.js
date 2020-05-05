@@ -7,11 +7,13 @@ function ProductList (props){
 
   return  <div className="container-fluid">
             <div className="row">
-            {
-              products.map((value, index)=>{
-              return <ProductCard product={value} key={value.id}/>
-              })
-            }
+              <div className='card-deck'>
+                  {
+                    products.map((value, index) => {
+                      return <ProductCard product={value} key={value.id} />
+                    })
+                  }
+              </div>
             </div>
           </div>
 }

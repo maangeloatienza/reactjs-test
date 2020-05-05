@@ -49,7 +49,7 @@ class Login extends Component {
                 <div className="row justify-content-md-center">
                     <div className="col col-xs-12 col-sm-12 col-md-6 col-lg-6  mt-5 pt-5">
                         <form onSubmit={this.onSubmit}>
-                            <h1 className='text-center'>Order Template Login</h1>
+                            <h1 className='text-center text-danger font-weight-bolder'> Pizza </h1>
 
                             <div className="form-label-group mb-2">
                                 

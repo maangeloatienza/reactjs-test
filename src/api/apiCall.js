@@ -35,6 +35,15 @@ export function addCart(endpoint,body) {
     });
 }
 
+export function updateCart(params, body) {
+  return API.put(`booking-items/${params}`, body)
+    .then(response => {
+      let data = response.data;
+
+      return data;
+    })
+}
+
 export function checkout(body) {
   return API.post(`transactions?`,body)
     .then(response=>{
@@ -53,3 +62,14 @@ export function getTransactions(params) {
       return data;
     })
 }
+
+export function getTransaction(id,params) {
+  return API.get(`transactions/${id}`)
+    .then(response => {
+      let data = response.data;
+
+      return data;
+    })
+}
+
+

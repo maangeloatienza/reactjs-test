@@ -8,6 +8,7 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.min.css';
 
+
 import { BrowserRouter as Router} from 'react-router-dom';
 import { Provider } from 'react-globally'
 import * as serviceWorker from './serviceWorker';
