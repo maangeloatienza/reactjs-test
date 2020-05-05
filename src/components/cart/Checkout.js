@@ -139,11 +139,11 @@ function Checkout(props){
                         </li>
                         <li className="list-group-item d-flex justify-content-between">
                             <span>Total USD </span>
-                            <strong>&#36; {((total + charge) / 50.61).toFixed(2) || 0.0}</strong>
+                            <strong>&#36; {cart?((total + charge ) / 50.61).toFixed(2):0 }</strong>
                         </li>
                         <li className="list-group-item d-flex justify-content-between">
                             <span>Total EURO</span>
-                            <strong>&euro; {((total + charge) / 55.66).toFixed(2) || 0.0}</strong>
+                            <strong>&euro; {cart?((total  + charge) / 55.66).toFixed(2):0 }</strong>
                         </li>
                     </ul>
             </div>
